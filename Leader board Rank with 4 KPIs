@@ -1,0 +1,17 @@
+Leaderboard Team NS & #L #C = 
+var Teamrank=
+RANKX(
+    ALLSELECTED('Data Dump'[ASM]),
+    0.25*[Rank Abs GTPY Team]+0.25*[Rank GTPY% Team]+0.25*[Rank #Lines CY Team]+0.25*[Rank #C TPY Team],,
+    ASC,
+    Dense
+    )
+var Result = 
+ IF(
+     ISINSCOPE('Data Dump'[ASM]),
+     Teamrank
+ )
+ Return
+Result
+
+    //Rank Team by (25% GTPY% + 25% Abs GTPY + 25% #Lines CY + 25% #C GTPY)
