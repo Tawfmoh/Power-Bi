@@ -1,0 +1,31 @@
+Color Format test = 
+
+Var Opp_status =
+SELECTEDVALUE(
+    Opportunity[Lifecycle Status (Opportunity)]
+)
+
+Var Expected_Value =
+sum(
+    Opportunity[Expected Value]
+)
+
+Var Result_Opp =
+SWITCH(
+    True(),
+    Expected_Value <= 0,
+    "Red",
+    Expected_Value = BLANK(),
+    "Red",
+    Expected_Value > 0 && Opp_status = "Lost" ,
+    "Black",
+    Expected_Value > 0 && or(Opp_status = "In Process",Opp_status = "Open") ,
+    "Yellow",
+    Expected_Value > 0 && Opp_status = "Stopped",
+    "Yellow",
+    "Green"
+)
+
+Return
+
+    Result_Opp
