@@ -1,0 +1,22 @@
+# GM % CY = 
+   VAR GM_CY = DIVIDE(
+        [Total Profit CY],
+        [Total Sales CY]
+   
+     )
+RETURN
+
+SWITCH(
+    true(),
+    GM_CY<0.3,
+    "🔴 " & format(GM_CY,"0.0%"),
+    GM_CY<0.385,
+    "🟡 " & format(GM_CY,"0.0%"),
+    GM_CY>=0.385,
+    "🟢 " & format(GM_CY,"0.0%")
+)
+
+// While calculatiing GM% also consider traffic sign indicators (Red,Yello, Green) (<30%, <38.5%, >= 38.5%) then return result with % format & traffic light
+// yellow #CAC640 
+// Red #FF0000
+// Green #00B050
