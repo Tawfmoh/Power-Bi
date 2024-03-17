@@ -1,0 +1,18 @@
+Sales GTPY% = 
+VAR PREV_YEAR = 
+CALCULATE(
+    [Total Sales],
+     DATEADD(
+         'Date'[Date],
+          -1,
+           YEAR
+    )
+)
+RETURN
+If(
+    [Total Sales LY]=BLANK(),
+    DIVIDE(
+        [Total Sales cy]-1,
+        100
+    ),
+	if(PREV_YEAR=blank(),1,DIVIDE([Total Sales] - PREV_YEAR, PREV_YEAR)-1))
